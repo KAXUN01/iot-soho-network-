@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  cowrie-honeypot:
+    image: cowrie/cowrie:latest
+    container_name: iot-cowrie-honeypot
+    ports:
+      - "2222:2222"
+      - "2223:2223"
+    volumes:
+      - "./honeypot_logs:/cowrie/var/log/cowrie"
+    environment:
+      - COWRIE_HOSTNAME=iot-device
+      - COWRIE_LOG_LEVEL=INFO
+    restart: unless-stopped
+    networks:
+      - honeypot-network
+
+  dionaea-honeypot:
+    image: dinotools/dionaea:latest
+    container_name: iot-dionaea-honeypot
+    ports:
+      - "21:21"
+      - "8080:80"
+      - "8443:443"
+      - "135:135"
+      - "445:445"
+    volumes:
+      - "./honeypot_logs:/opt/dionaea/var/log"
+    restart: unless-stopped
+    networks:
+      - honeypot-network
+
+networks:
+  honeypot-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.40.0/24
