@@ -1,5 +1,7 @@
 # Adaptive Zero Trust IoT Security Framework
 
+Repository: `https://github.com/KAXUN01/iot-soho-network-.git`
+
 A comprehensive security framework for Small Office/Home Office (SOHO) IoT networks that provides automatic device onboarding, continuous trust evaluation, and intelligent threat response through honeypot redirection.
 
 ## 🎯 Project Overview
@@ -258,7 +260,7 @@ If you use this framework in your research, please cite:
   title={Adaptive Zero Trust Security Framework for SOHO IoT Networks},
   author={[Your Name]},
   year={2025},
-  url={https://github.com/[username]/adaptive-zero-trust-iot-framework}
+  url={https://github.com/KAXUN01/iot-soho-network-.git}
 }
 ```
 
