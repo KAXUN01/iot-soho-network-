@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   framework:
     build:
@@ -19,7 +18,7 @@ services:
     restart: unless-stopped
 
   mininet:
-    image: opennetworking/mininet:stable
+    image: mininet/mininet:latest
     container_name: iot-mininet
     privileged: true
     network_mode: host

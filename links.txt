@@ -6,3 +6,9 @@ https://chatgpt.com/share/68ecc27a-6440-8003-8dad-7c09ca270899
 
 related course 
 https://gns3.teachable.com/courses/24014/lectures/3939200
+
+
+
+
+docker build -t iot-framework:latest .
+docker compose -f docker-compose.framework.yml up -d
