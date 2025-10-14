@@ -16,13 +16,17 @@ WORKDIR /app
 COPY framework /app/framework
 
 # Install Python deps
-RUN pip install --no-cache-dir --upgrade pip setuptools wheel \
+# Work around Ryu build hook incompatibility with modern setuptools
+ENV SETUPTOOLS_USE_DISTUTILS=stdlib
+RUN pip install --no-cache-dir --upgrade pip wheel \
+    && pip install --no-cache-dir "setuptools<58" \
     && pip install --no-cache-dir \
-       flask==2.3.3 \
-       cryptography==41.0.4 \
-       docker==6.1.3 \
-       scapy==2.5.0 \
-       ryu==4.34
+         flask==2.3.3 \
+         cryptography==41.0.4 \
+         docker==6.1.3 \
+         scapy==2.5.0 \
+    && pip install --no-cache-dir ryu==4.34 \
+    && pip install --no-cache-dir "setuptools==65.5.1"
 
 # Create runtime dirs (mounted as volumes by compose)
 RUN mkdir -p /app/framework/data /app/framework/logs /app/framework/honeypot_logs /app/framework/certificates
