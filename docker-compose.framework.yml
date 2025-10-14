@@ -18,7 +18,9 @@ services:
     restart: unless-stopped
 
   mininet:
-    image: quay.io/mininet/mininet:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.mininet
     container_name: iot-mininet
     privileged: true
     network_mode: host

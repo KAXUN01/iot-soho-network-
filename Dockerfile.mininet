@@ -1,0 +1,19 @@
+FROM ubuntu:20.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+    mininet \
+    openvswitch-switch \
+    iproute2 \
+    iputils-ping \
+    net-tools \
+    tcpdump \
+    sudo \
+    ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
+
+# Default command will be overridden by compose/runner
+CMD ["/bin/bash"]
+
