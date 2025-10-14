@@ -11,10 +11,10 @@ services:
     environment:
       - PYTHONUTF8=1
     volumes:
-      - ./"iot project"/adaptive_zero_trust_iot_framework/data:/app/framework/data
+      - ./framework/data:/app/framework/data
       - ./"iot project"/adaptive_zero_trust_iot_framework/logs:/app/framework/logs
-      - ./"iot project"/adaptive_zero_trust_iot_framework/honeypot_logs:/app/framework/honeypot_logs
-      - ./"iot project"/adaptive_zero_trust_iot_framework/certificates:/app/framework/certificates
+      - ./framework/honeypot_logs:/app/framework/honeypot_logs
+      - ./framework/certificates:/app/framework/certificates
       - /var/run/docker.sock:/var/run/docker.sock  # allow honey pots control
     restart: unless-stopped
 

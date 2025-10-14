@@ -13,7 +13,7 @@ RUN apt-get update \
 WORKDIR /app
 
 # Copy framework into /app/framework (avoid spaces in path)
-COPY "iot project/adaptive_zero_trust_iot_framework" /app/framework
+COPY framework /app/framework
 
 # Install Python deps
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel \
