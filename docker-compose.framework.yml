@@ -18,7 +18,7 @@ services:
     restart: unless-stopped
 
   mininet:
-    image: mininet/mininet:latest
+    image: quay.io/mininet/mininet:latest
     container_name: iot-mininet
     privileged: true
     network_mode: host
