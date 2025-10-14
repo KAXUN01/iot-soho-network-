@@ -18,6 +18,19 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock  # allow honey pots control
     restart: unless-stopped
 
+  mininet:
+    image: opennetworking/mininet:stable
+    container_name: iot-mininet
+    privileged: true
+    network_mode: host
+    depends_on:
+      - framework
+    entrypoint: ["/bin/bash", "-lc"]
+    command: >
+      "mn --topo single,3 --mac --controller=remote,ip=127.0.0.1,port=6653 --switch ovsk,protocols=OpenFlow13"
+    # For interactive use, override command when running: 
+    # docker compose -f docker-compose.framework.yml run --rm mininet bash
+
 # Honeypots (optional) can be run as separate services; framework can also deploy them via Docker SDK
 # Example cowrie and dionaea could be added here if preferred
 
