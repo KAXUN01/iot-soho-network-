@@ -12,3 +12,15 @@ https://gns3.teachable.com/courses/24014/lectures/3939200
 
 docker build -t iot-framework:latest .
 docker compose -f docker-compose.framework.yml up -d
+
+
+
+
+Build and run:
+docker build -f Dockerfile.mininet -t iot-mininet:latest .
+docker build -t iot-framework:latest .
+docker compose -f docker-compose.framework.yml up -d
+Interactive Mininet:
+docker compose -f docker-compose.framework.yml run --rm --network host --privileged mininet bash
+Inside:
+mn --topo single,3 --mac --controller=remote,ip=127.0.0.1,port=6653 --switch ovsk,protocols=OpenFlow13
