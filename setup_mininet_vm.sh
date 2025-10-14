@@ -28,13 +28,13 @@ sudo apt-get install -y net-tools iputils-ping traceroute
 sudo apt-get install -y nmap netcat-openbsd
 
 # Clone the project (if not already cloned)
-if [ ! -d "iot-soho-network" ]; then
+if [ ! -d "iot-soho-network-" ]; then
     echo "📥 Cloning project repository..."
     git clone https://github.com/KAXUN01/iot-soho-network-.git
-    cd iot-soho-network
+    cd iot-soho-network-
 else
     echo "📁 Project already exists, updating..."
-    cd iot-soho-network
+    cd iot-soho-network-
     git pull origin main
 fi
 
