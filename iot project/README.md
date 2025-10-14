@@ -95,6 +95,26 @@ nano config/config.py
 python3 main.py
 ```
 
+### Run with Docker (recommended for reproducibility)
+
+1. Build the image (from repo root):
+```bash
+docker build -t iot-framework:latest .
+```
+
+2. Start the stack with compose:
+```bash
+docker compose -f docker-compose.framework.yml up -d
+```
+
+3. Verify services:
+```bash
+curl http://localhost:5000/health
+# Ryu OpenFlow controller listens on 6653
+```
+
+Data, logs, certificates, and honeypot logs are persisted to the host via bind mounts. Honeypot containers can be controlled by the framework through the mounted `/var/run/docker.sock`.
+
 ## 📋 Configuration
 
 ### Key Configuration Parameters

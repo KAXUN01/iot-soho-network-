@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  framework:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: iot-framework
+    ports:
+      - "5000:5000"   # Flask onboarding API
+      - "6653:6653"   # Ryu OpenFlow controller
+    environment:
+      - PYTHONUTF8=1
+    volumes:
+      - ./"iot project"/adaptive_zero_trust_iot_framework/data:/app/framework/data
+      - ./"iot project"/adaptive_zero_trust_iot_framework/logs:/app/framework/logs
+      - ./"iot project"/adaptive_zero_trust_iot_framework/honeypot_logs:/app/framework/honeypot_logs
+      - ./"iot project"/adaptive_zero_trust_iot_framework/certificates:/app/framework/certificates
+      - /var/run/docker.sock:/var/run/docker.sock  # allow honey pots control
+    restart: unless-stopped
+
+# Honeypots (optional) can be run as separate services; framework can also deploy them via Docker SDK
+# Example cowrie and dionaea could be added here if preferred
+
