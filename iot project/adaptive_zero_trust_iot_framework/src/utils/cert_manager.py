@@ -6,6 +6,7 @@ from cryptography import x509
 from cryptography.x509.oid import NameOID
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
+from cryptography.hazmat.backends import default_backend
 from datetime import datetime, timedelta
 import uuid
 
@@ -89,10 +90,19 @@ class CertificateManager:
     def load_ca(self):
         """Load existing CA certificate and private key"""
         with open(self.ca_cert_path, "rb") as f:
-            self.ca_cert = x509.load_pem_x509_certificate(f.read())
+            cert_bytes = f.read()
+            # Support older cryptography versions that require a backend parameter
+            try:
+                self.ca_cert = x509.load_pem_x509_certificate(cert_bytes)
+            except TypeError:
+                self.ca_cert = x509.load_pem_x509_certificate(cert_bytes, default_backend())
 
         with open(self.ca_key_path, "rb") as f:
-            self.ca_key = serialization.load_pem_private_key(f.read(), password=None)
+            key_bytes = f.read()
+            try:
+                self.ca_key = serialization.load_pem_private_key(key_bytes, password=None)
+            except TypeError:
+                self.ca_key = serialization.load_pem_private_key(key_bytes, password=None, backend=default_backend())
 
     def create_device_certificate(self, device_id, public_key_pem):
         """Create and sign a device certificate from CSR"""

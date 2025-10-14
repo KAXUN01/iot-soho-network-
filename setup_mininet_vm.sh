@@ -308,8 +308,9 @@ echo ""
 echo "✅ Mininet VM setup complete!"
 echo "=============================================================="
 echo "📋 Next steps:"
-echo "1. Note your VM IP: $(hostname -I | awk '{print $1}')"
-echo "2. Get the Ryu VM IP from the controller setup"
+echo "1. Note your VM IP: $(hostname -I | awk '{print $1}')"    72.16.3.29
+
+echo "2. Get the Ryu VM IP from the controller setup"   172.16.3.30
 echo "3. Test connection: ./quick_test.sh <ryu_vm_ip>"
 echo "4. Start full simulation: ./start_mininet.sh <ryu_vm_ip>"
 echo ""
