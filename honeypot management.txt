@@ -1,0 +1,26 @@
+# 1. Build the Docker image locally
+docker build -t beelzbub .
+
+# 2. Check existing containers (including stopped)
+docker ps -a
+
+# 3. Remove old container if needed
+docker rm beelzbub
+
+# 4. Run the container with configuration mounted
+docker run -d --name beelzbub -v /root/beelzbub/configurations:/configurations beelzbub
+
+# 5. Check running containers
+docker ps
+
+# 6. View container logs to verify startup
+docker logs beelzbub
+
+# 7. Follow logs in real-time (optional)
+docker logs -f beelzbub
+
+# 8. Access container shell (optional)
+docker exec -it beelzbub /bin/sh
+
+# 9. Stop and remove container when done
+docker rm -f beelzbub
